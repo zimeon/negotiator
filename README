@@ -15,9 +15,20 @@ Negotiator2 offers a framework for making content negotiation decisions based on
 
   * Support for python 2.6, 2.7, and python 3.4 and up
   * Converted examples into tests
+  * Added utility function `conneg_on_accept`
 
 Note that Negotiator2 supports only negotiation on Accept and Accept-Language. It does not support Accept-Charset and Accept-Encoding.
 
+Utility Function
+----------------
+
+A single function call that takes the formats supported by the server and the Accept header from the client to return the best format to respond with:
+
+    >>> from negotiator2 import conneg_on_accept
+    >>> conneg_on_accept(["text/html","application/json"], "text/plain, text/html;q=0.5")
+    'text/html'
+    >>> conneg_on_accept(["text/html","application/json"], "application/json, application/ld+json")
+    'application/json'
 
 Basic Usage
 -----------
