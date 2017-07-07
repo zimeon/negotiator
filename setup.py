@@ -39,4 +39,6 @@ setup(
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
+    test_suite="tests",
+    tests_require=[],
 )

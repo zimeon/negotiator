@@ -1,22 +1,29 @@
-Negotiator
-==========
+Negotiator2
+===========
 
-Proper Content Negotiation for Python
+.. image:: https://travis-ci.org/zimeon/negotiator2.svg?branch=master
+    :target: https://travis-ci.org/zimeon/negotiator2
+
+
+Framework neutral HTTP Content Negotiation for Python
 
 Introduction
 ------------
 
-Negotiator offers a framework for making content negotiation decisions based on the HTTP accept headers.
+Negotiator2 offers a framework for making content negotiation decisions based on the HTTP accept headers. This is an updated fork of the [Negotiator 1.0.0](https://pypi.python.org/pypi/negotiator/1.0.0) by Richard Jones and last updated 2012-03-14. Changes from that code are:
 
-NOTE it currently only formally supports Accept and Accept-Language, but it is a short haul to support for Accept-Charset and Accept-Encoding (TODO)
+  * Support for python 2.6, 2.7, and python 3.4 and up
+  * Converted examples into tests
+
+NOTE that Negotiator2 supports only negotiation on Accept and Accept-Language. It does not support Accept-Charset and Accept-Encoding.
 
 
 Basic Usage
 -----------
 
-Import all the objects from the negotiator module
+Import all the objects from the negotiator2 module
 
-    >>> from negotiator import ContentNegotiator, AcceptParameters, ContentType, Language
+    >>> from negotiator2 import ContentNegotiator, AcceptParameters, ContentType, Language
 
 Specify the default parameters.  These are the parameters which will be used in place of any HTTP Accept headers which are not present in the negotiation request.  For example, if the Accept-Language header is not passed to the negotiator it will assume that the client request is for "en"
 
@@ -44,9 +51,9 @@ The negotiator indicates that the best match the server can give to the client's
 Advanced Usage
 --------------
 
-Import all the objects from the negotiator module
+Import all the objects from the negotiator2 module
 
-    >>> from negotiator import ContentNegotiator, AcceptParameters, ContentType, Language
+    >>> from negotiator2 import ContentNegotiator, AcceptParameters, ContentType, Language
 
 Specify the default parameters.  These are the parameters which will be used in place of any HTTP Accept headers which are not present in the negotiation request. For example, if the Accept-Language header is not passed to the negotiator it will assume that the client request is for "en"
 
@@ -87,7 +94,7 @@ The negotiator indicates the best fit to the client request is text/html in Germ
 Preference Ordering Rules
 -------------------------
 
-The Negotiator organises the preferences in each accept header into a sequence,
+The negotiator organises the preferences in each accept header into a sequence,
 from highest q value to lowest, grouping together equal q values.
 
 For example, the HTTP Accept header:
