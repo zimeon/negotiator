@@ -2,17 +2,11 @@
 
 This code is an update of the "negotiator" package
 <https://pypi.python.org/pypi/negotiator/1.0.0> written by
-Richard Jones and last updated in 2014. Richard wrote:
+Richard Jones and last updated in 2012. Richard wrote:
 "Negotiator offers a framework for making content negotiation
 decisions based on the HTTP accept headers."
 
-This version is updated to:
-
-  * support Python3
-
-NOTE it currently only formally supports Accept and Accept-Language,
-but it is a short haul to support for Accept-Charset and
-Accept-Encoding (TODO).
+See README for more information.
 """
 import logging
 
