@@ -3,19 +3,20 @@ Negotiator2
 
 .. image:: https://travis-ci.org/zimeon/negotiator2.svg?branch=master
     :target: https://travis-ci.org/zimeon/negotiator2
-
+.. image:: https://coveralls.io/repos/github/zimeon/negotiator2/badge.svg?branch=master
+    :target: https://coveralls.io/github/zimeon/negotiator2?branch=master
 
 Framework neutral HTTP Content Negotiation for Python
 
 Introduction
 ------------
 
-Negotiator2 offers a framework for making content negotiation decisions based on the HTTP accept headers. This is an updated fork of the [Negotiator 1.0.0](https://pypi.python.org/pypi/negotiator/1.0.0) by Richard Jones and last updated 2012-03-14. Changes from that code are:
+Negotiator2 offers a framework for making content negotiation decisions based on the HTTP accept headers. This is an updated fork of the [Negotiator 1.0.0](https://pypi.python.org/pypi/negotiator/1.0.0) module written by Richard Jones and last updated 2012-03-14. Changes from that code are:
 
   * Support for python 2.6, 2.7, and python 3.4 and up
   * Converted examples into tests
 
-NOTE that Negotiator2 supports only negotiation on Accept and Accept-Language. It does not support Accept-Charset and Accept-Encoding.
+Note that Negotiator2 supports only negotiation on Accept and Accept-Language. It does not support Accept-Charset and Accept-Encoding.
 
 
 Basic Usage
