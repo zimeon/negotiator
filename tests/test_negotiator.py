@@ -1,5 +1,6 @@
 """Negotiator tests."""
 import unittest
+
 from negotiator2 import AcceptParameters, ContentType, Language, ContentNegotiator
 
 
