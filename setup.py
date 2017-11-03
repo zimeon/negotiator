@@ -4,7 +4,7 @@ import re
 
 # Extract version number from code. Be very strict about the
 # format of the version string as a extra sanity check.
-VERSIONFILE = "negotiator2/negotiator.py"
+VERSIONFILE = "negotiator2/__init__.py"
 verfilestr = open(VERSIONFILE, "rt").read()
 match = re.search(r"^__version__ = '(\d\.\d.\d+(\.\d+)?)'",
                   verfilestr, re.MULTILINE)
