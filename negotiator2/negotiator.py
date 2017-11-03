@@ -13,11 +13,6 @@ import logging
 log = logging.getLogger(__name__)
 log.setLevel(logging.WARN)
 
-__version__ = '2.0.1'
-
-# Objects used to represent aspects of Content Negotiation
-###########################################################
-
 
 class AcceptParameters(object):
     """AcceptParameters class.
