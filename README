@@ -23,7 +23,9 @@ Changes from that code are:
 Content Negotiation
 ===================
 
-Negotiator2 supports content negotiation only on the ``Accept`` and ``Accept-Language`` headers. It does not support ``Accept-Charset`` and ``Accept-Encoding``.
+Negotiator2 supports content negotiation only on the ``Accept`` (`RFC7231 sec5.3.2
+<https://tools.ietf.org/html/rfc7231#section-5.3.2>`_ and ``Accept-Language`` (`RFC7231 sec5.3.5
+<https://tools.ietf.org/html/rfc7231#section-5.3.5>`_ headers. It does not support ``Accept-Charset`` and ``Accept-Encoding``.
 
 Utility Function
 ----------------
