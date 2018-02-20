@@ -1,5 +1,8 @@
 # negotiator2 changelog
 
+2017-11-03 v2.1.1
+  * Tidy triple representation from TimeMap.triples()
+
 2017-11-03 v2.1.0
   * Add support for Memento datetime negotiation
 

@@ -99,18 +99,18 @@ class TestAll(unittest.TestCase):
         tm = TimeMap()
         self.assertRaises(BadTimeMap, tm.triples)
         tm.original = 'URI-R'
-        self.assertEqual(tm.triples(), [('URI-R', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'http://mementoweb.org/ns#Memento')])
+        self.assertEqual(tm.triples(), [('URI-R', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'http://mementoweb.org/ns#Memento', False)])
         tm.timegate = tm.original
-        self.assertTrue(('URI-R', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'http://mementoweb.org/ns#TimeGate') in tm.triples())
+        self.assertTrue(('URI-R', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'http://mementoweb.org/ns#TimeGate', False) in tm.triples())
         tm.timegate = "URI-TG"
-        self.assertTrue(('URI-TG', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'http://mementoweb.org/ns#TimeGate') in tm.triples())
+        self.assertTrue(('URI-TG', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'http://mementoweb.org/ns#TimeGate', False) in tm.triples())
         tm.timegate = None
         tm.mementos[datetime(2001, 2, 3, 4, 5, 6)] = 'URI-M1'
-        self.assertTrue(('URI-M1', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'http://mementoweb.org/ns#Memento') in tm.triples())
-        self.assertTrue(('URI-M1', 'http://mementoweb.org/ns#memento-datetime', '"Sat, 03 Feb 2001 04:05:06 GMT') in tm.triples())
+        self.assertTrue(('URI-M1', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'http://mementoweb.org/ns#Memento', False) in tm.triples())
+        self.assertTrue(('URI-M1', 'http://mementoweb.org/ns#memento-datetime', 'Sat, 03 Feb 2001 04:05:06 GMT', True) in tm.triples())
         tm.timemap = "URI-TM"
-        self.assertTrue(('URI-TM', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'http://mementoweb.org/ns#TimeMap') in tm.triples())
+        self.assertTrue(('URI-TM', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'http://mementoweb.org/ns#TimeMap', False) in tm.triples())
         n = len(tm.triples())
         tm.timegate = 'URI-TG2'
         self.assertEqual(len(tm.triples()), n + 3)  # TimeGate should add 3 triples
-        self.assertTrue(('URI-M1', 'http://mementoweb.org/ns#timegate', 'URI-TG2') in tm.triples())
+        self.assertTrue(('URI-M1', 'http://mementoweb.org/ns#timegate', 'URI-TG2', False) in tm.triples())

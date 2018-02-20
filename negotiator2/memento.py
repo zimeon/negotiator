@@ -158,9 +158,9 @@ class TimeMap(object):
     def triples(self):
         """RDF representation of TimeMap as a list of triple tuples.
 
-        Triple tuples are (s, p, o) for each triple where the values are
-        string representations of the URIs, or of a literal object which
-        is preced with a double-quote. These can be fed into rdflib by
+        Triple tuples are (s, p, o, o_is_data) for each triple where the
+        values are string representations of the URIs, or of a literal
+        object (indicated by o_is_data True). These can be fed into rdflib by
         converting each URI into a rdflib.URIRef, and each literal into
         a rdflib.Literal with code like:
 
@@ -170,10 +170,10 @@ class TimeMap(object):
         tm = TimeMap()
         ...
         g = Graph()
-        for (s, p, o) in tm.triples():
+        for (s, p, o, o_is_data) in tm.triples():
             g.add((URIRef(s),
                    URIRef(p),
-                   Literal(o.lstrip('"')) if o.startswith('"') else URIRef(o)))
+                   Literal(o) if o_is_data else URIRef(o)))
 
         Assembly of the triples from instance data follows the same logic
         as serialize_link_format().
@@ -192,28 +192,28 @@ class TimeMap(object):
             raise BadTimeMap('TimeMap MUST list the URI-R of the Original Resource')
         # MUST unambiguously type listed resources as being Original
         # Resource, TimeGate, Memento, or TimeMap.
-        triples.append((self.original, RDF_TYPE, MEMENTO_NS + "Memento"))
+        triples.append((self.original, RDF_TYPE, MEMENTO_NS + "Memento", False))
         # SHOULD list the URI-G of one or more TimeGates for the Original
         # Resource known to the responding server;
         if (self.timegate):
-            triples.append((self.timegate, RDF_TYPE, MEMENTO_NS + "TimeGate"))
-            triples.append((self.original, MEMENTO_NS + "timegate", self.timegate))
+            triples.append((self.timegate, RDF_TYPE, MEMENTO_NS + "TimeGate", False))
+            triples.append((self.original, MEMENTO_NS + "timegate", self.timegate, False))
         # MUST list the URI-M and archival datetime of each Memento for the
         # Original Resource known to the server, preferably in a single
         # document, or, alternatively in multiple documents that can be
         # gathered by following contained links with a "timemap" Relation
         # Type;
         for (datetime, uri_m) in self.mementos.items():
-            triples.append((uri_m, RDF_TYPE, MEMENTO_NS + "Memento"))
+            triples.append((uri_m, RDF_TYPE, MEMENTO_NS + "Memento", False))
             triples.append((uri_m, MEMENTO_NS + "memento-datetime",
-                            '"' + memento_datetime_string(datetime)))
+                            memento_datetime_string(datetime), True))
             if (self.timegate):
-                triples.append((uri_m, MEMENTO_NS + "timegate", self.timegate))
+                triples.append((uri_m, MEMENTO_NS + "timegate", self.timegate, False))
         # SHOULD, for self-containment, list the URI-T of the TimeMap
         # itself;
         if (self.timemap):
-            triples.append((self.timemap, RDF_TYPE, MEMENTO_NS + "TimeMap"))
-            triples.append((self.original, MEMENTO_NS + "timemap", self.timemap))
+            triples.append((self.timemap, RDF_TYPE, MEMENTO_NS + "TimeMap", False))
+            triples.append((self.original, MEMENTO_NS + "timemap", self.timemap, False))
             # FIXME - should there be more #timemap links from other resources, or
             # FIXME - is that just clutter?
         return triples
